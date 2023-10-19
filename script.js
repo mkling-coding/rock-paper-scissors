@@ -18,18 +18,20 @@ const getComputerChoice = () => {
 let userChoice = prompt("Enter rock, paper, or scissors: ").toLowerCase();
 
 // Play a single round of rock paper scissors
-const playRound = (user, cpu) => {
-    if (user === "rock" && cpu === "paper") {
+const playRound = (playerSelection, computerSelection) => {
+    // console.log(`Player choice: ${playerSelection}`)
+    // console.log(`CPU choice: ${computerSelection}`)
+    if (playerSelection === "rock" && computerSelection === "paper") {
         cpuScore ++;
-    } else if (user === "rock" && cpu === "scissors") {
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
         userScore ++;
-    } else if (user === "paper" && cpu === "rock") {
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
         userScore ++;
-    } else if (user === "paper" && cpu === "scissors") {
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
         cpuScore ++;
-    } else if (user === "scissors" && cpu === "rock") {
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
         cpuScore ++;
-    } else if (user === "scissors" && cpu === "paper") {
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
         userScore ++;
     } else {
         userScore += 0;
