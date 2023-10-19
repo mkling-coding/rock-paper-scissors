@@ -14,9 +14,6 @@ const getComputerChoice = () => {
     }
 }
 
-// Get user choice
-let userChoice = prompt("Enter rock, paper, or scissors: ").toLowerCase();
-
 // Play a single round of rock paper scissors
 const playRound = (playerSelection, computerSelection) => {
     // console.log(`Player choice: ${playerSelection}`)
@@ -46,5 +43,22 @@ const playRound = (playerSelection, computerSelection) => {
     }
 }
 
-
 // Report winner and loser after 5 games
+const game = () => {
+    for (let i = 0; i < 5; i++) {
+        // Get user choice
+        let userChoice = prompt("Enter rock, paper, or scissors: ").toLowerCase();
+        // Play round
+        console.log(playRound(userChoice, getComputerChoice()));
+    }
+
+    if (userScore > cpuScore) {
+        console.log(`You won the game with a score of ${userScore} to ${cpuScore}`)
+    } else if (cpuScore > userScore) {
+        console.log(`You lost the game with a score of ${userScore} to ${cpuScore}`)
+    } else {
+        console.log("The game was a tie!")
+    }
+}
+
+game();
