@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/images/rock-paper-scissors.png">
 </head>
 <body>
+    <div class="center container">
+        <h1>Rock Paper Scissors</h1>
+        <div id="icon-attribution"><p>Icons made by <a href="https://www.freepik.com" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p></div>
+        <div id="scores" class="container">
+            <p id="userScore">User Score: 0</p>
+            <p id="cpuScore">CPU Score: 0</p>
+        </div>
+        <p id="messageToUser"></p>
+        <div id="buttons" class="center container">
+            <button><img src="images/stone.png"><p>Rock</p></button>
+            <button><img src="images/paper.png"><p>Paper</p></button>
+            <button><img src="images/scissors.png"><p>Scissors</p></button>
+        </div>
+    </div>
+    <footer>
+        <p>Created by mkling-coding - check out my other projects <a href="https://github.com/mkling-coding" target="_blank">here</a></p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

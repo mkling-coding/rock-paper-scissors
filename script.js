@@ -1,3 +1,6 @@
+let buttons = document.querySelector("#buttons")
+let messageToUser = document.querySelector("#messageToUser")
+
 // Initialize scores
 let userScore = 0;
 let cpuScore = 0;
@@ -14,51 +17,79 @@ const getComputerChoice = () => {
     }
 }
 
+// Checks who won and gives them the appropriate end game screen
+const checkWhoWon = (userScore, cpuScore) => {
+    if (userScore >= 5) {
+        window.location.href = "winner.html";
+    } else if (cpuScore >= 5) {
+        window.location.href = "loser.html";
+    } else {
+        messageToUser.textContent = "Error determining winner"
+    }
+}
+
 // Play a single round of rock paper scissors
 const playRound = (playerSelection, computerSelection) => {
-    // console.log(`Player choice: ${playerSelection}`)
-    // console.log(`CPU choice: ${computerSelection}`)
     if (playerSelection === "rock" && computerSelection === "paper") {
         cpuScore ++;
-        return "You lose! Paper beats rock."
+        // If user or CPU won, run checkWhoWon function
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        // Else, print message to user and adjust score
+        } else {
+            messageToUser.textContent = "You lose! CPU chose paper, and paper beats rock.";
+            document.querySelector("#cpuScore").textContent = `CPU Score: ${cpuScore}`;
+        }
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
         userScore ++;
-        return "You win! Rock beats scissors."
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        } else {
+            messageToUser.textContent = "You win! CPU chose scissors, and rock beats scissors.";
+            document.querySelector("#userScore").textContent = `User Score: ${userScore}`;
+        }
     } else if (playerSelection === "paper" && computerSelection === "rock") {
         userScore ++;
-        return "You win! Paper beats rock."
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        } else {
+            messageToUser.textContent = "You win! CPU chose rock, and paper beats rock.";
+            document.querySelector("#userScore").textContent = `User Score: ${userScore}`;
+        }
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
         cpuScore ++;
-        return "You lose! Scissors beats paper."
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        } else {
+            messageToUser.textContent = "You lose! CPU chose scissors, and scissors beats paper.";
+            document.querySelector("#cpuScore").textContent = `CPU Score: ${cpuScore}`;
+        }
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
         cpuScore ++;
-        return "You lose! Rock beats scissors."
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        } else {
+            messageToUser.textContent = "You lose! CPU chose rock, and rock beats scissors.";
+            document.querySelector("#cpuScore").textContent = `CPU Score: ${cpuScore}`;
+        }
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
         userScore ++;
-        return "You win! Scissors beats paper."
+        if (userScore >= 5 || cpuScore >= 5) {
+            checkWhoWon(userScore, cpuScore)
+        } else {
+            messageToUser.textContent = "You win! CPU chose paper, and scissors beats paper.";
+            document.querySelector("#userScore").textContent = `User Score: ${userScore}`;
+        }
     } else {
         userScore += 0;
         cpuScore += 0;
-        return "Tie!"
+        messageToUser.textContent = "Tie!"
     }
 }
 
-// Report winner and loser after 5 games
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        // Get user choice
-        let userChoice = prompt("Enter rock, paper, or scissors: ").toLowerCase();
-        // Play round
-        console.log(playRound(userChoice, getComputerChoice()));
-    }
-
-    if (userScore > cpuScore) {
-        console.log(`You won the game with a score of ${userScore} to ${cpuScore}`)
-    } else if (cpuScore > userScore) {
-        console.log(`You lost the game with a score of ${userScore} to ${cpuScore}`)
-    } else {
-        console.log("The game was a tie!")
-    }
-}
-
-game();
+document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", function (e) {
+        let userChoice = (button.childNodes[1].textContent).toLowerCase();
+        playRound(userChoice, getComputerChoice());
+    })
+})
